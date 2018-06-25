@@ -7,8 +7,20 @@ const PORT = 3000;
 
 var app = express();
 
-/* set template engine */
+/* hbs - set template engine */
 app.set('view engine', 'hbs');
+
+/* hbs - partials */
+hbs.registerPartials(__dirname + '/views/partials')
+
+/* hbs - helpers */
+hbs.registerHelper('getCurrentYear', () => {
+	return new Date().getFullYear();
+});
+hbs.registerHelper('toTitleCase', (text) => {
+	return text.toUpperCase();
+});
+
 
 /* middleware - static files */
 app.use(express.static(__dirname + '/public'));
@@ -17,8 +29,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
 	// res.send('<h1>Node Web Server!</h1>');
 	var pageName = {
-		name: 'Welcome, Maulana Yusup Abdullah',
-		currentYear: new Date().getFullYear()
+		name: 'Welcome, Maulana Yusup Abdullah'
 	}
 	res.render('home.hbs', pageName)
 });
@@ -29,8 +40,7 @@ app.get('/about', (req, res) => {
 		likes: [
 			'Adventure',
 			'Breathing'
-		],
-		currentYear: new Date().getFullYear()
+		]
 	}
 	res.render('about.hbs', biodata)
 });

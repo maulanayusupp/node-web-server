@@ -5,17 +5,14 @@
 	<meta charset="utf-8">
 </head>
 <body>
-	<h1>{{ name }}</h1>
+	{{> header }}
 	<p>
 		<h3>Likes</h3>
 		{{#each likes}}
 			<div>{{ this }}</div>
 		{{/each}}
 	</p>
-	<footer>
-		<p>
-			Copyright {{ currentYear }}
-		</p>
-	</footer>
+
+	{{> footer }}
 </body>
 </html>
