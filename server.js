@@ -3,6 +3,8 @@ const express = require('express');
 /* Express.js template engine plugin for Handlebars */
 const hbs = require('hbs');
 
+const fs = require('fs')
+
 const PORT = 3000;
 
 var app = express();
@@ -22,11 +24,36 @@ hbs.registerHelper('toTitleCase', (text) => {
 });
 
 
-/* middleware - static files */
-app.use(express.static(__dirname + '/public'));
+/* static files - middleware */
+// app.use(express.static(__dirname + '/public'));
+
+/* middleware */
+app.use((req, res, next) => {
+	var now = new Date().toString();
+	var log = `${now}: ${req.method} ${req.url}`;
+	console.log(log);
+	fs.appendFile('server.log', log + '\n', (err) => {
+		if (err) {
+			console.log('Unable to append to server.log');
+		}
+	});
+	next();
+});
+
+/*app.use((req, res, next) => {
+	res.render('maintenance.hbs');
+});*/
 
 /* route */
 app.get('/', (req, res) => {
+	// res.send('<h1>Node Web Server!</h1>');
+	var pageName = {
+		name: 'Welcome, Maulana Yusup Abdullah'
+	}
+	res.render('index.hbs', pageName)
+});
+
+app.get('/home', (req, res) => {
 	// res.send('<h1>Node Web Server!</h1>');
 	var pageName = {
 		name: 'Welcome, Maulana Yusup Abdullah'
