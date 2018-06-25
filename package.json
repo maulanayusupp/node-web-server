@@ -1,0 +1,27 @@
+{
+  "name": "web-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maulanayusupp/node-web-server.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "Node",
+    "web",
+    "server",
+    "web",
+    "server"
+  ],
+  "author": "Maulana Yusup Abdullah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maulanayusupp/node-web-server/issues"
+  },
+  "homepage": "https://github.com/maulanayusupp/node-web-server#readme"
+}
